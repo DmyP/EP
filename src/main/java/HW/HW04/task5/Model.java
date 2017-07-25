@@ -1,4 +1,4 @@
-package HW.HW04;
+package HW.HW04.task5;
 
 class Model {
     final int RAND_MAX = 1000;

@@ -1,4 +1,4 @@
-package HW.HW04;
+package HW.HW04.task5;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -42,8 +42,8 @@ class Controller {
         return rand(model.getMin(), model.getMax());
     }
 
-    //Random with choosen range
-    private int rand(int min, int max) {
+    //Random with chosen range
+    int rand(int min, int max) {
         return new Random().nextInt((max - min) + 1) + min;
     }
 

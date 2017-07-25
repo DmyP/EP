@@ -1,4 +1,4 @@
-package HW.HW04;
+package HW.HW04.task5;
 
 class View {
     static String GENERATE_RANGE = "Press 0 if you want to use default range, or 1 to enter range manually - ";
