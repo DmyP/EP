@@ -8,7 +8,7 @@ public enum DrinkType {
 
     private final String name;
 
-    private DrinkType(final String type) {
+    DrinkType(final String type) {
         this.name = type;
     }
 
