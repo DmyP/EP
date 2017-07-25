@@ -1,4 +1,4 @@
-package HW02_arrays;
+package HW.HW02_arrays;
 
 class Model {
     private int[] array;

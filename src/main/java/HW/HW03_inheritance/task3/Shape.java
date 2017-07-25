@@ -1,4 +1,4 @@
-package HW03_inheritance.task3;
+package HW.HW03_inheritance.task3;
 
 abstract class Shape {
     private static double squareSum;

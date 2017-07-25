@@ -1,4 +1,4 @@
-package HW03_inheritance.task3;
+package HW.HW03_inheritance.task3;
 
 import java.util.Arrays;
 

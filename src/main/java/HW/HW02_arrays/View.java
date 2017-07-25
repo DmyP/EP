@@ -1,4 +1,4 @@
-package HW02_arrays;
+package HW.HW02_arrays;
 
 class View {
     static String TASK_1 = "\n1.  Array straight and reverse order - ";

@@ -1,4 +1,4 @@
-package HW03_inheritance.task3;
+package HW.HW03_inheritance.task3;
 
 public class Triangle extends Shape {
     private double height;
