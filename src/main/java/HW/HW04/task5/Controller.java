@@ -48,7 +48,7 @@ class Controller {
     }
 
     //manual range input
-    private void manualRangeInput() {
+    void manualRangeInput() {
         int min, max;
         do {
             print(View.GENERATE_MIN);
