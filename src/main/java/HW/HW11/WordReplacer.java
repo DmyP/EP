@@ -4,11 +4,11 @@ import java.io.File;
 
 class WordReplacer {
 
-    void replaceWords(File file, String sourceWord, String destinationWord){
-        String readedString = FileUtils.readFileToString(file);
+    void replaceWords(File sourceFile, File destinationFile, String sourceWord, String destinationWord){
+        String readedString = FileUtils.readFileToString(sourceFile);
 
         String resultString = readedString.replaceAll(sourceWord, destinationWord);
 
-        FileUtils.writeFile(file, resultString);
+        FileUtils.writeFile(destinationFile, resultString);
     }
 }

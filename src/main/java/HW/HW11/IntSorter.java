@@ -6,7 +6,7 @@ import java.util.Random;
 
 class IntSorter {
 
-    void generateRandomInts(File file) {
+    void generateRandomInt(File file) {
         Random random = new Random();
         PrintWriter printWriter = null;
         try {
@@ -21,13 +21,13 @@ class IntSorter {
         }
     }
 
-    void sortFileContents(File file) {
-        String readedString = FileUtils.readFileToString(file);
+    void sortFileContents(File sourceFile, File destinationFile) {
+        String readedString = FileUtils.readFileToString(sourceFile);
 
         char[] chars = readedString.toCharArray();
         Arrays.sort(chars);
         String resultString = new String(chars);
 
-        FileUtils.writeFile(file, resultString);
+        FileUtils.writeFile(destinationFile, resultString);
     }
 }
