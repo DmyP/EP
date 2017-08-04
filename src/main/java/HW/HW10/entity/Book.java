@@ -14,11 +14,4 @@ public class Book {
         this.word = new Word(sentence);
         this.punctuation = new Punctuation(text);
     }
-
-
-
-
-
-
-
 }
