@@ -59,35 +59,53 @@ class TaskUtils {
         FileUtils.writeFile(resultFile, result.toString());
     }
 
+    //Task 5
     static void surnameToUpperCase(File sourceFile, File resultFile) {
         List<String> stringList = FileUtils.readFileToStringList(sourceFile);
         StringBuilder result = new StringBuilder();
         for (String string : stringList) {
-            Matcher m = Pattern.compile("\\w{2,}[ \\-:]+[1]?[7-90]").matcher(string);
+            Matcher matcher = Pattern.compile("\\w{2,}[ \\-:]+[1]?[7-90]").matcher(string);
             StringBuilder sb = new StringBuilder();
-            int last = 0;
-            while (m.find()) {
-                sb.append(string.substring(last, m.start()));
-                sb.append(m.group(0).toUpperCase());
-                last = m.end();
+            int counter = 0;
+            while (matcher.find()) {
+                sb.append(string.substring(counter, matcher.start()));
+                sb.append(matcher.group(0).toUpperCase());
+                counter = matcher.end();
             }
-            sb.append(string.substring(last));
+            sb.append(string.substring(counter));
             result = result.append(sb + "\n");
         }
 
         FileUtils.writeFile(resultFile, result.toString());
     }
 
+    //Task 6
     static void determineInput(File sourceFile, File resultFile) {
         String string = FileUtils.readFileToString(sourceFile);
-        List<Matcher> matcherList = new ArrayList<>();
-        matcherList.add(Pattern.compile(" \\w+ ").matcher(string));
-        matcherList.add(Pattern.compile(" \\p{Punct} ").matcher(string));
-        matcherList.add(Pattern.compile(" \\d+ ").matcher(string));
-        matcherList.add(Pattern.compile(" \\d+.\\d ").matcher(string));
+        String[] matchers = {"\\p{Alpha}", "^\\p{Punct}$", "[0-9]*^[^\\p{Punct}]+$[0-9]*", "[0-9][.][0-9]"};
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext(""))
+        String tempString ;
         System.out.println("Task 4. Input any letter/word/int digit/float digit\n" +
                 "to find matches form source file or input empty string to leave : ");
+        while (!(tempString = scanner.nextLine()).equals("exit")) {
+            for (int i = 0; i < matchers.length; i++) {
+                Matcher matcher = Pattern.compile(matchers[i]).matcher(tempString);
+                if (matcher.find()){
+                    System.out.print("Your input is ");
+                    System.out.println(i == 0 ? "character string" : i == 1 ? "punctuation symbol" : i == 2 ? "integer value" : "float value");
+                    System.out.println("Here is according type from file");
+
+                    Matcher tempMatcher = Pattern.compile(matchers[i]).matcher(string);
+                    StringBuilder sb = new StringBuilder();
+                    int counter = 0;
+                    while (matcher.find()) {
+                        sb.append(string.substring(counter, tempMatcher.start()));
+                        sb.append(matcher.group(0).toUpperCase());
+                        counter = matcher.end();
+                    }
+                    System.out.println(sb.toString());
+                }
+            }
+        }
     }
 }

@@ -42,8 +42,8 @@ class FileUtils {
     }
 
     public static File createFile(String fileName) {
-            String path = "/Users/inna/IdeaProjects/EP/src/main/java/HW/HW11/files/" + fileName;
-//            String path = "C:\\java\\EP\\src\\main\\java\\HW\\HW11\\files\\" + fileName;
+            //String path = "/Users/inna/IdeaProjects/EP/src/main/java/HW/HW11/files/" + fileName;
+            String path = "C:\\java\\EP\\src\\main\\java\\HW\\HW11\\files\\" + fileName;
             File file = new File(path);
             try {
                 if(!file.exists()){
