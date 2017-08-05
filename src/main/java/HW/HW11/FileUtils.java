@@ -3,6 +3,7 @@ package HW.HW11;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 class FileUtils {
     static String readFileToString(File file){
@@ -72,5 +73,20 @@ class FileUtils {
             e.printStackTrace();
         }
         return stringList;
+    }
+
+    static void generateRandomInt(File file) {
+        Random random = new Random();
+        PrintWriter printWriter = null;
+        try {
+            printWriter = new PrintWriter(file.getAbsoluteFile());
+            for (int i = 0; i < random.nextInt(100); i++) {
+                printWriter.print(random.nextInt(9));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            printWriter.close();
+        }
     }
 }
