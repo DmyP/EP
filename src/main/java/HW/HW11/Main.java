@@ -40,7 +40,7 @@ public class Main {
         //Task6
         sourceFile = FileUtils.createFile("task6.txt");
         resultFile = FileUtils.createFile("task6DetermineInput.txt");
-        FileUtils.writeFile(sourceFile, "a 111 bb 0 11.1 ccc 99.99 dddd ! @ # $ % ^ & *");
+        FileUtils.writeFile(sourceFile, "asfdf 111 bb 0 11.1 ccc 99.99 dddd ! @ # $ % ^ & *");
         TaskUtils.determineInput(sourceFile, resultFile);
 
     }

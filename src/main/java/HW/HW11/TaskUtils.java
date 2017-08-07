@@ -1,6 +1,8 @@
 package HW.HW11;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,26 +84,25 @@ class TaskUtils {
     //Task 6
     static void determineInput(File sourceFile, File resultFile) {
         String string = FileUtils.readFileToString(sourceFile);
-        String[] matchers = {"\\p{Alpha}", "^\\p{Punct}$", "[0-9]*^[^\\p{Punct}]+$[0-9]*", "[0-9][.][0-9]"};
+        String[] matchers = {"\\p{Alpha}", "^\\p{Punct}$", "[0-9]*^[\\p{Punct}]+[0-9]*", "[0-9][.][0-9]"};
         Scanner scanner = new Scanner(System.in);
         String tempString ;
         System.out.println("Task 4. Input any letter/word/int digit/float digit\n" +
                 "to find matches form source file or input empty string to leave : ");
         while (!(tempString = scanner.nextLine()).equals("exit")) {
             for (int i = 0; i < matchers.length; i++) {
-                Matcher matcher = Pattern.compile(matchers[i]).matcher(tempString);
-                if (matcher.find()){
+                Matcher inputMatcher = Pattern.compile(matchers[i]).matcher(tempString);
+                if (inputMatcher.find()){
                     System.out.print("Your input is ");
                     System.out.println(i == 0 ? "character string" : i == 1 ? "punctuation symbol" : i == 2 ? "integer value" : "float value");
                     System.out.println("Here is according type from file");
-
-                    Matcher tempMatcher = Pattern.compile(matchers[i]).matcher(string);
+                  //  ParseException;
+                    Matcher outputMatcher = Pattern.compile(matchers[i]).matcher(string);
                     StringBuilder sb = new StringBuilder();
                     int counter = 0;
-                    while (matcher.find()) {
-                        sb.append(string.substring(counter, tempMatcher.start()));
-                        sb.append(matcher.group(0).toUpperCase());
-                        counter = matcher.end();
+                    while (outputMatcher.find()) {
+                        sb.append(string.substring(counter, outputMatcher.start()));
+                        counter = outputMatcher.end();
                     }
                     System.out.println(sb.toString());
                 }
