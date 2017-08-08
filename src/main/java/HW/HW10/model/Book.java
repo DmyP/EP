@@ -57,4 +57,18 @@ public class Book {
     public void setSentencesList(List<Sentence> sentencesList) {
         this.sentencesList = sentencesList;
     }
+
+    public TreeSet<String> getWordSet(){
+        TreeSet<String> wordsSet = new TreeSet<>();
+        sentencesList.forEach(sentence -> wordsSet.addAll(sentence.getWordStringList()));
+        return wordsSet;
+    }
+
+    public int wordQuantity(String word){
+        int result = 0;
+        for (Sentence sentence : sentencesList) {
+            result += sentence.getWordQuantity(word);
+        }
+        return result;
+    }
 }

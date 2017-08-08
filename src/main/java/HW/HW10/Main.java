@@ -11,7 +11,6 @@ public class Main {
         //File file = new File("/Users/inna/IdeaProjects/EP/src/main/java/HW/HW10/source/Thinking In Java short.txt");
         BookController bookController = new BookController(new Book(file));
 
-        //Book3Controller book3Controller = new Book3Controller(new Book3(file));
         //Task 1
         bookController.maxNumberSentencesWithDuplicateWords();
 
@@ -29,6 +28,22 @@ public class Main {
 
         //Task 6
         bookController.wordsInAlphabeticOrder();
+
+        //Task 7
+        bookController.vowelRelationSort();
+
+        //Task 8
+        bookController.secondConsonantSort();
+
+        //Task 9
+        bookController.letterQuantitySort('a');
+
+        //Task 10
+        bookController.wordsFrequency();
+
+        //Task 11
+        bookController.removeSubstring('a', 'a');
+
 
     }
 }

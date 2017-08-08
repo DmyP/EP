@@ -3,17 +3,15 @@ package HW.HW10.controller;
 import HW.HW10.model.Book;
 import HW.HW10.model.Sentence;
 import HW.HW10.model.Word;
+import sun.reflect.generics.tree.Tree;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class BookController {
     private Book book;
-
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_WHITE = "\u001B[37m";
 
     public BookController(Book book) {
         this.book = book;
@@ -109,17 +107,94 @@ public class BookController {
 
     //Task 6
     public void wordsInAlphabeticOrder() {
-        TreeSet<String> wordsSet = new TreeSet<>();
-        List<Sentence> sentenceList = book.getSentencesList();
-        sentenceList.forEach(sentence -> wordsSet.addAll(sentence.getWordStringList()));
+        System.out.println("\nTask 6 - Words in alphabetic order");
+        TreeSet<String> wordsSet = book.getWordSet();
         char currentChar = ' ';
         for (String word : wordsSet) {
             if (word.charAt(0) != currentChar) {
-                System.out.println(ANSI_RED + word);
+                System.out.println("\u001B[31m" + word);
                 currentChar = word.charAt(0);
             } else {
-                System.out.println(ANSI_WHITE + word);
+                System.out.println("\u001B[37m" + word);
             }
         }
+    }
+
+    //Task 7
+    public void vowelRelationSort() {
+        System.out.println("\nTask 7 - Words in vowel relation sort");
+        List<String> wordsList = new ArrayList<>(book.getWordSet());
+        wordsList.sort((o1, o2) -> Float.compare(vowelRelation(o2), vowelRelation(o1)));
+        System.out.println(wordsList);
+    }
+
+    //Task 7 Util method
+    private float vowelRelation(String word){
+        int vowelCount = 0;
+        Matcher vowelMatcher = Pattern.compile("[aeiou]").matcher(word.toLowerCase());
+        while (vowelMatcher.find()){
+            vowelCount++;
+        }
+        return (float) vowelCount / word.length();
+    }
+
+    //Task 8
+    public void secondConsonantSort() {
+        System.out.println("\nTask 8 - Words with first vowel, sort by first consonant");
+        List<String> wordsList = book.getWordSet().stream().filter(s -> isVowel(s.charAt(0)) & (s.length() > 1)).collect(Collectors.toList());
+        wordsList.sort((o1, o2) -> Character.compare(o1.charAt(findConsonant(o1)), o2.charAt(findConsonant(o2))));
+        System.out.println(wordsList);
+    }
+
+    //Task 8 Util method
+    private boolean isVowel(char c){
+        return  (c == 'a') | (c == 'e') | (c == 'i') | (c == 'o') | (c == 'u');
+    }
+
+    //Task 8 Util method
+    private int findConsonant(String word){
+        Matcher consonantMatcher = Pattern.compile("[a-z&&[^aeiou]]").matcher(word.toLowerCase());
+        if (consonantMatcher.find()){
+            return consonantMatcher.start();
+        }
+        return 0;
+    }
+
+    //Task 9
+    public void letterQuantitySort(char c) {
+        System.out.println("\nTask 9 - Sort words by desired char quantity");
+        List<String> wordsList = new ArrayList<>(book.getWordSet());
+        wordsList.sort((o1, o2) -> {
+            int result = (int) (o2.chars().filter(ch -> ch == c).count() - o1.chars().filter(ch -> ch == c).count());
+            return result == 0 ? o1.compareTo(o2) : result;
+        });
+        System.out.println(wordsList);
+    }
+
+    //Task 10
+    public void wordsFrequency() {
+        System.out.println("\nTask 10 - Determine most frequent words");
+        HashMap<String, Integer> frequencyMap = new HashMap<>();
+        book.getWordSet().forEach(word -> frequencyMap.put(word, book.wordQuantity(word)));
+        Map<String, Integer> sortedFrequencyMap = frequencyMap.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        System.out.println(sortedFrequencyMap);
+    }
+
+    //Task 11
+    public void removeSubstring(char beginChar, char endChar) {
+        System.out.println("\nTask 11 - Remove longest substring from every sentence");
+
+        for (Sentence sentence : book.getSentencesList()) {
+            System.out.println(sentence.getSentenceSting());
+            String currentString = sentence.getSentenceSting();
+            if (currentString.indexOf(beginChar) != -1 & currentString.indexOf(beginChar) != -1) {
+                currentString = currentString.substring(0, currentString.indexOf(beginChar)) + currentString.substring(currentString.lastIndexOf(endChar) + 1, currentString.length());
+            }
+            System.out.println(currentString);
+        }
+
     }
 }

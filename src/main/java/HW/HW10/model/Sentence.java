@@ -18,7 +18,7 @@ public class Sentence implements Comparable<Sentence>{
 
     private List<Word> sentenceStingToWordList() {
         List<Word> words = new ArrayList<>();
-        Matcher matcher = Pattern.compile("[a-zA-z']+").matcher(sentenceSting);
+        Matcher matcher = Pattern.compile("[a-zA-z]+").matcher(sentenceSting);
         while (matcher.find())
             words.add(new Word(matcher.group()));
         return words;
@@ -42,6 +42,10 @@ public class Sentence implements Comparable<Sentence>{
 
     public List<Word> getWordList() {
         return wordList;
+    }
+
+    public int getWordQuantity(String word) {
+        return (int) wordList.stream().filter(w -> w.getWord().toLowerCase().equals(word.toLowerCase())).count();
     }
 
     public boolean isQuestion() {
