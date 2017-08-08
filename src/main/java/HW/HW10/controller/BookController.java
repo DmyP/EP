@@ -195,6 +195,22 @@ public class BookController {
             }
             System.out.println(currentString);
         }
+    }
+
+    //Task 12
+    public void removeWordFromText(int lengthToRemove) {
+        System.out.println("\nTask 12 - Remove all words from text vowel begin words with desired length");
+        String text = "Thinking in rere Java! Fourth Edition Java.";
+        Pattern pattern = Pattern.compile("^[a-z]{4}\\p]");
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            if (isVowel(text.charAt(matcher.start()))) {
+                text = text.substring(0, matcher.start()) + text.substring(matcher.end() + 1, text.length());
+             //   matcher.reset();
+            }
+        }
+        System.out.println(text);
 
     }
+
 }

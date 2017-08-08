@@ -44,6 +44,8 @@ public class Main {
         //Task 11
         bookController.removeSubstring('a', 'a');
 
+        //Task 12
+        bookController.removeWordFromText(4);
 
     }
 }
