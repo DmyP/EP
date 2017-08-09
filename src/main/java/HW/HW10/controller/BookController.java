@@ -201,16 +201,31 @@ public class BookController {
     public void removeWordFromText(int lengthToRemove) {
         System.out.println("\nTask 12 - Remove all words from text vowel begin words with desired length");
         String text = "Thinking in rere Java! Fourth Edition Java.";
-        Pattern pattern = Pattern.compile("^[a-z]{4}\\p]");
+        Pattern pattern = Pattern.compile("(?<![\\p{L}\\p{N}-])[^aeiouAEIOU][\\p{L}\\p{N}-]{3}(?![\\p{L}\\p{N}-])");
         Matcher matcher = pattern.matcher(text);
+        String resultString = null;
         while (matcher.find()) {
-            if (isVowel(text.charAt(matcher.start()))) {
-                text = text.substring(0, matcher.start()) + text.substring(matcher.end() + 1, text.length());
-             //   matcher.reset();
+            if (!isVowel(text.charAt(matcher.start()))) {
+                resultString = text.replace(matcher.group(), "");
+                //matcher.reset();
             }
         }
-        System.out.println(text);
+        System.out.println(resultString);
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BookController that = (BookController) o;
+
+        return book != null ? book.equals(that.book) : that.book == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return book != null ? book.hashCode() : 0;
+    }
 }
