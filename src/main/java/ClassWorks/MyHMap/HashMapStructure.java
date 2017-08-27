@@ -15,9 +15,13 @@ public class HashMapStructure {
 
         HashMap<Country, String> countryCapitalMap=new HashMap<Country,String>();
         countryCapitalMap.put(india,"Delhi");
+        System.out.println(india.hashCode());
         countryCapitalMap.put(japan,"Tokyo");
+        System.out.println(japan.hashCode());
         countryCapitalMap.put(france,"Paris");
+        System.out.println(france.hashCode());
         countryCapitalMap.put(russia,"Moscow");
+        System.out.println(russia.hashCode());
 
         Iterator countryCapitalIter=countryCapitalMap.keySet().iterator();//put debug point at this line
         while(countryCapitalIter.hasNext())
