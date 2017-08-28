@@ -1,4 +1,4 @@
-package ClassWorks.Maps.MyHMap;
+package Collections.Maps.MyHMap;
 
 
 import java.util.HashMap;

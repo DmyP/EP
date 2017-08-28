@@ -1,4 +1,4 @@
-package ClassWorks.Maps.lru;
+package Collections.Maps.lru;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

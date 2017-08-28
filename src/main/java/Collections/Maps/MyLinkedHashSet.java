@@ -1,4 +1,4 @@
-package ClassWorks.Maps;
+package Collections.Maps;
 
 import java.util.LinkedHashSet;
 

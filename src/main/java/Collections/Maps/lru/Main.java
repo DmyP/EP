@@ -1,4 +1,4 @@
-package ClassWorks.Maps.lru;
+package Collections.Maps.lru;
 
 public class Main {
     public static void main(String[] args) {

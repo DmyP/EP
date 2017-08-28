@@ -1,4 +1,4 @@
-package ClassWorks.Concur.CopyOnWrite;
+package Collections.CopyOnWrite;
 
 import java.util.ArrayList;
 import java.util.Collections;

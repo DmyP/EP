@@ -1,4 +1,4 @@
-package ClassWorks.Maps.MyHMap;
+package Collections.Maps.MyHMap;
 
     public class Country {
 

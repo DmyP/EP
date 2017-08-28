@@ -1,4 +1,4 @@
-package ClassWorks.Queue.MyPrQueue;
+package Collections.MyPrQueue;
 
 import java.util.Comparator;
 import java.util.LinkedList;
